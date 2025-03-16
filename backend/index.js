@@ -4,10 +4,10 @@ import cors from "cors";
 import Todo_Routes from "./routes/todo.route.js";
 const app = express();
 app.use(cors({
-  origin: ["https://todos-mern-1.vercel.app"], 
-  methods: ["GET", "POST"],
-  credentials: true
+  origin: ["https://todo-frontend-zeta-five.vercel.app"], 
+  methods: ["GET", "POST", "PUT", "DELETE"] 
 }));
+
 app.use(express.json());
 const PORT = 5001;
 
