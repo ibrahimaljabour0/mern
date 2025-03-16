@@ -3,10 +3,11 @@ import mongoose from "mongoose";
 import cors from "cors";
 import Todo_Routes from "./routes/todo.route.js";
 const app = express();
-app.use(cors(
-  origin:["https://todoos-beta.vercel.app"],
-  methods:["POST,GET"],
-));
+app.use(cors({
+  origin: ["https://todos-mern-1.vercel.app"], 
+  methods: ["GET", "POST"],
+  credentials: true
+}));
 app.use(express.json());
 const PORT = 5001;
 
