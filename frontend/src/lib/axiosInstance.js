@@ -1,4 +1,5 @@
-import axios from "axios"
+import axios from "axios";
+
 export const axiosInstance = axios.create({
-    baseURL: "https://todoos-beta.vercel.app/todo_app"
-})
+    baseURL: "https://todo-backend-sandy-one.vercel.app/todo_app"
+});
