@@ -1,21 +1,28 @@
 import express from "express";
 import mongoose from "mongoose";
 import cors from "cors";
+import dotenv from "dotenv";  // Import dotenv
 import Todo_Routes from "./routes/todo.route.js";
+
+dotenv.config();  // Load .env file
+
 const app = express();
+
 app.use(cors({
-  origin: ["https://todo-frontend-zeta-five.vercel.app"], 
+  origin: [process.env.CLIENT_URL], 
   methods: ["GET", "POST", "PUT", "DELETE"] 
 }));
 
 app.use(express.json());
-const PORT = 5001;
+
+const PORT = process.env.PORT || 5001;
+const MONGO_URI = process.env.MONGO_URI;
 
 mongoose
-  .connect("mongodb+srv://bara:VZFVKsBQ7S7wZoQR@cluster0.zjiuz.mongodb.net/todo_app?retryWrites=true&w=majority&appName=Cluster0")
+  .connect(MONGO_URI)
   .then(() => console.log("MongoDB Atlas Connected"))
   .catch((err) => console.log("MongoDB Connection Error:", err));
 
 app.use("/todo_app", Todo_Routes);
 
-app.listen(PORT, console.log("server is running on port", PORT));
+app.listen(PORT, () => console.log(`Server is running on port ${PORT}`));
